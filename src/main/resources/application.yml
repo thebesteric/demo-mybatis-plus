@@ -1,0 +1,42 @@
+spring:
+  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://127.0.0.1:3306/mybatis?useUnicode=true&characterEncoding=UTF-8&userSSL=false&serverTimezone=Asia/Shanghai&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull
+#    username: root
+#    password: root
+
+    # 多数据源配置
+    dynamic:
+      # 设置默认的数据源，默认 master
+      primary: master
+      # 严格匹配数据源，默认 false，true 表示未匹配到数据源时抛出异常，false 则使用默认数据源，即 master
+      strict: false
+      # 是否优雅关闭数据源，默认为 false，设置为 true 时，关闭数据源时如果数据源中还存在活跃连接，至多等待10s后强制关闭
+      grace-destroy: true
+      datasource:
+        master:
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://127.0.0.1:3306/mybatis?useUnicode=true&characterEncoding=UTF-8&userSSL=false&serverTimezone=Asia/Shanghai&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull
+          username: root
+          password: root
+        slave_1:
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8&userSSL=false&serverTimezone=Asia/Shanghai&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull
+          username: root
+          password: root
+
+
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+  # 配置类型别名对应的包
+  type-aliases-package: com.example.mybatis.pojo
+  # 扫描枚举包（老版本需要配置）
+  type-enums-package: com.example.mybatis.enums
+#  mapper-locations: ["classpath*:/mapper/**/*.xml"] # 默认位置
+#  global-config:
+#    db-config:
+#      id-type: assign_id # 全局 id 生成策略未雪花算法
+#      table-prefix: t_ # 全局表名前缀为 t_
