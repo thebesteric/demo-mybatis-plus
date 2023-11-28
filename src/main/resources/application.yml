@@ -31,6 +31,8 @@ mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     map-underscore-to-camel-case: true
+    # 开启二级缓存
+    cache-enabled: true
   # 配置类型别名对应的包
   type-aliases-package: com.example.mybatis.pojo
   # 扫描枚举包（老版本需要配置）

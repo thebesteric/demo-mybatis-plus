@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.annotation.*;
 import com.example.mybatis.enums.GenderEnum;
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * User
  *
@@ -32,4 +34,7 @@ public class User {
     private Integer isDeleted = 0;
 
     private GenderEnum gender;
+
+    @TableField(exist = false)
+    private List<Account> accounts;
 }
