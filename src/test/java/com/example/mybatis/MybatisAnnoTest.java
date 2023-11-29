@@ -133,8 +133,8 @@ public class MybatisAnnoTest {
      */
     @Test
     void findUserCars() {
-        List<User> users = userMapper.selectAll();
-        users.forEach(System.out::println);
+        UserVO userVO = userMapper.selectUserById(1L);
+        System.out.println("userVO = " + userVO);
     }
 
 }

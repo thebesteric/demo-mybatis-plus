@@ -3,6 +3,7 @@ package com.example.mybatis.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.example.mybatis.pojo.User;
+import com.example.mybatis.pojo.vo.UserVO;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.mapping.FetchType;
 
@@ -63,4 +64,13 @@ public interface UserMapper extends BaseMapper<User> {
 
     @Delete("DELETE FROM user WHERE id = #{id}")
     long deleteUser(long id);
+
+    // 通过中间表进行一对多、多对多查询（三表）：https://blog.csdn.net/qq_33811336/article/details/125639591
+    @Select("select * from user where id = #{id}")
+    @Results(id = "selectUser", value = {
+            @Result(id = true, property = "id", column = "id"),
+            @Result(property = "roles", column = "id", javaType = List.class,
+                    many = @Many(select = "com.example.mybatis.mapper.RoleMapper.selectRoleByUserId", fetchType = FetchType.LAZY))
+    })
+    UserVO selectUserById(@Param("id") Long id);
 }

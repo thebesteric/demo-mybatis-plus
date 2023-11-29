@@ -3,6 +3,8 @@ package com.example.mybatis.pojo.vo;
 import com.example.mybatis.enums.GenderEnum;
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * UserVO
  *
@@ -18,4 +20,5 @@ public class UserVO {
     private String email;
     private Integer isDeleted = 0;
     private GenderEnum gender;
+    private List<RoleVO> roles;
 }
