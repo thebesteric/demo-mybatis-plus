@@ -31,9 +31,15 @@ public interface UserMapper extends BaseMapper<User> {
 
     @Select("SELECT * FROM user")
     @Results(id = "userMap", value = {
+            @Result(id = true, property = "id", column = "id"),
             @Result(property = "accounts", column = "id",
                     many = @Many(
                             select = "com.example.mybatis.mapper.AccountMapper.findAccountByUserId",
+                            fetchType = FetchType.LAZY
+                    )),
+            @Result(property = "cars", column = "id",
+                    many = @Many(
+                            select = "com.example.mybatis.mapper.UserCarMapper.findByUserIdCars",
                             fetchType = FetchType.LAZY
                     ))
     })

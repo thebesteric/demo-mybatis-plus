@@ -128,4 +128,13 @@ public class MybatisAnnoTest {
         users.forEach(System.out::println);
     }
 
+    /**
+     * 多对多，属性注入
+     */
+    @Test
+    void findUserCars() {
+        List<User> users = userMapper.selectAll();
+        users.forEach(System.out::println);
+    }
+
 }

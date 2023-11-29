@@ -37,4 +37,7 @@ public class User {
 
     @TableField(exist = false)
     private List<Account> accounts;
+
+    @TableField(exist = false)
+    private List<Car> cars;
 }

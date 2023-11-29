@@ -3,28 +3,26 @@ package com.example.mybatis.pojo;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
-import java.io.Serializable;
-import java.util.List;
-
 /**
- * Car
+ * UserCar
  *
  * @author wangweijun
  * @version v1.0
- * @since 2023-11-28 01:19:42
+ * @since 2023-11-29 11:17:14
  */
 @Data
-@TableName("car")
-public class Car implements Serializable {
+public class UserCar {
     @TableId(value = "id", type = IdType.ASSIGN_ID)
-    private long carId;
+    private Long id;
 
-    @TableField("name")
-    private String carName;
+    @TableField("user_id")
+    private Long userId;
+
+    @TableField("car_id")
+    private Long carId;
 
     @TableField(exist = false)
-    private List<User> users;
+    private Car car;
 }
